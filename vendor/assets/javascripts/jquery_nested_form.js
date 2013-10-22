@@ -86,8 +86,11 @@
   };
 
   window.nestedFormEvents = new NestedFormEvents();
-  $("form a.add_nested_fields, form a.remove_nested_fields").die();
-$('form a.add_nested_fields').live('click', nestedFormEvents.addFields);
+$("form a.add_nested_fields, form a.remove_nested_fields").die();
+$('form a.add_nested_fields').live('click', function(e){
+console.log("add nested fields click");
+nestedFormEvents.addFields(e);
+} );
 $('form a.remove_nested_fields').live('click', nestedFormEvents.removeFields);
 })(jQuery);
 
