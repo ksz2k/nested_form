@@ -6,8 +6,6 @@
 
   NestedFormEvents.prototype = {
     addFields: function(e) {
-      console.log('x');
-      
       // Setup
       var link      = e.currentTarget;
       var assoc     = $(link).data('association');                // Name of child
@@ -86,12 +84,9 @@
   };
 
   window.nestedFormEvents = new NestedFormEvents();
-$("form a.add_nested_fields, form a.remove_nested_fields").die();
-$('form a.add_nested_fields').live('click', function(e){
-console.log("add nested fields click");
-nestedFormEvents.addFields(e);
-} );
-$('form a.remove_nested_fields').live('click', nestedFormEvents.removeFields);
+  $(document)
+    .delegate('form a.add_nested_fields',    'click', nestedFormEvents.addFields)
+    .delegate('form a.remove_nested_fields', 'click', nestedFormEvents.removeFields);
 })(jQuery);
 
 // http://plugins.jquery.com/project/closestChild
